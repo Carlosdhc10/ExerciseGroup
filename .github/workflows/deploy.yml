@@ -71,3 +71,4 @@ jobs:
             # Correr el contenedor con la nueva imagen
             docker run -d -p 80:80 --name my-app ${{ secrets.DOCKER_USERNAME }}/my-app:latest
           EOF
+
