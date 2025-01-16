@@ -13,9 +13,9 @@ jobs:
       - name: Deploy Docker Image to EC2 Instance 1
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.EC2_INSTANCE1_PUBLIC_IP }}
+          host: ${{ secrets.EC2_INSTANCE3_PUBLIC_IP }}
           username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEYP }}
           script: |
             # Actualizar paquetes
             sudo yum update -y
@@ -36,9 +36,9 @@ jobs:
       - name: Deploy Docker Image to EC2 Instance 2
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.EC2_INSTANCE2_PUBLIC_IP }}
+          host: ${{ secrets.EC2_INSTANCE4_PUBLIC_IP }}
           username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEYP }}
           script: |
             # Actualizar paquetes
             sudo yum update -y
@@ -59,9 +59,9 @@ jobs:
       - name: Deploy Docker Image to EC2 Instance 3
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.EC2_INSTANCE3_PUBLIC_IP }}
+          host: ${{ secrets.EC2_INSTANCE5_PUBLIC_IP }}
           username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEYP }}
           script: |
             # Actualizar paquetes
             sudo yum update -y
@@ -82,9 +82,9 @@ jobs:
       - name: Deploy Docker Image to EC2 Instance 4
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: ${{ secrets.EC2_INSTANCE4_PUBLIC_IP }}
+          host: ${{ secrets.EC2_INSTANCE6_PUBLIC_IP }}
           username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEYP }}
           script: |
             # Actualizar paquetes
             sudo yum update -y
