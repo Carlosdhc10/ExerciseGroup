@@ -39,9 +39,9 @@ jobs:
           echo "$EC2_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           
-          # Configurar SSH
+          # Configurar SSH para mantener la conexión activa
           mkdir -p ~/.ssh
-          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" > ~/.ssh/config
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n\tServerAliveInterval 60\n\tServerAliveCountMax 3" > ~/.ssh/config
 
           # Conexión SSH a EC2 y despliegue
           ssh -i private_key.pem ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
