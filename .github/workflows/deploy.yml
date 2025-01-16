@@ -9,7 +9,6 @@ jobs:
   deploy-instance-1:
     name: Deploy to EC2 Instance 1
     runs-on: ubuntu-latest
-    needs: []
     steps:
       # Verificar que los secretos requeridos están configurados
       - name: Validate required secrets for Instance 1
