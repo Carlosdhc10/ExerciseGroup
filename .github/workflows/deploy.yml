@@ -35,32 +35,28 @@ jobs:
         env:
           EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
         run: |
-
           # Guardar la clave privada
-
           echo "$EC2_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           
-          # Deshabilitar el host
-
+          # Configurar SSH
           mkdir -p ~/.ssh
-          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null" > ~/.ssh/config
 
           # Conexión SSH a EC2 y despliegue
-
           ssh -i private_key.pem ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            set -e
 
-            # Detener cualquier contenedor previo
+            # Detener y eliminar cualquier contenedor previo
+            docker ps -q | xargs -r docker stop
+            docker ps -aq | xargs -r docker rm
 
-            docker stop $(docker ps -q) || true
-            docker rm $(docker ps -a -q) || true
+            # Eliminar imágenes antiguas
+            docker images -q ${{ secrets.DOCKER_USERNAME }}/my-app | xargs -r docker rmi -f
 
             # Descargar la nueva imagen
-
             docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest
 
             # Correr el contenedor con la nueva imagen
-
-            docker run -d -p 80:80 ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-            
+            docker run -d -p 80:80 --name my-app ${{ secrets.DOCKER_USERNAME }}/my-app:latest
           EOF
