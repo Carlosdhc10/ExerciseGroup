@@ -24,10 +24,10 @@ jobs:
             sudo yum install -y docker
             sudo service docker start
             # Descargar e iniciar la imagen desde Docker Hub
-            sudo docker pull carlosdhc333/js-holamundo:latest
+            sudo docker pull carlosdhc333/js-holamundo:prod
             sudo docker stop js-holamundo-container || true
             sudo docker rm js-holamundo-container || true
-            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:latest
+            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:prod
 
   deploy-to-ec2-instance2:
     runs-on: ubuntu-latest
@@ -47,10 +47,10 @@ jobs:
             sudo yum install -y docker
             sudo service docker start
             # Descargar e iniciar la imagen desde Docker Hub
-            sudo docker pull carlosdhc333/js-holamundo:latest
+            sudo docker pull carlosdhc333/js-holamundo:prod
             sudo docker stop js-holamundo-container || true
             sudo docker rm js-holamundo-container || true
-            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:latest
+            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:prod
 
   deploy-to-ec2-instance3:
     runs-on: ubuntu-latest
@@ -70,10 +70,10 @@ jobs:
             sudo yum install -y docker
             sudo service docker start
             # Descargar e iniciar la imagen desde Docker Hub
-            sudo docker pull carlosdhc333/js-holamundo:latest
+            sudo docker pull carlosdhc333/js-holamundo:prod
             sudo docker stop js-holamundo-container || true
             sudo docker rm js-holamundo-container || true
-            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:latest
+            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:prod
 
   deploy-to-ec2-instance4:
     runs-on: ubuntu-latest
@@ -93,7 +93,7 @@ jobs:
             sudo yum install -y docker
             sudo service docker start
             # Descargar e iniciar la imagen desde Docker Hub
-            sudo docker pull carlosdhc333/js-holamundo:latest
+            sudo docker pull carlosdhc333/js-holamundo:prod
             sudo docker stop js-holamundo-container || true
             sudo docker rm js-holamundo-container || true
-            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:latest
+            sudo docker run -d --name js-holamundo-container -p 80:80 carlosdhc333/js-holamundo:prod
